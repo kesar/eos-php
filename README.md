@@ -1,4 +1,13 @@
-<?php
+# EOS RPC Client in PHP
+
+### Install:
+```bash
+ composer require kesar/eos-php
+ ```
+
+### Examples:
+
+```php
 
 use EOSPHP\EOSClient;
 
@@ -11,3 +20,5 @@ $block = $client->chain()->getBlock(2);
 $account = $client->chain()->getAccount('eosio');
 $code = $client->chain()->getCode('eosio');
 print_r($account);
+
+```

@@ -4,29 +4,46 @@ namespace EOSPHP\Types;
 
 class Block
 {
-    private $previous;
     private $timestamp;
+    private $producer;
+    private $confirmed;
+    private $previous;
     private $transactionMroot;
     private $actionMroot;
     private $blockMroot;
-    private $producer;
     private $scheduleVersion;
     private $newProducers;
     private $producerSignature;
+    private $id;
+    private $blockNum;
 
     public function __construct($response)
     {
         $responseObj = json_decode($response);
 
-        $this->previous = $responseObj->previous;
         $this->timestamp = new \DateTime($responseObj->timestamp);
+        $this->producer = $responseObj->producer;
+        $this->confirmed = $responseObj->confirmed;
+        $this->previous = $responseObj->previous;
         $this->transactionMroot = $responseObj->transaction_mroot;
         $this->actionMroot = $responseObj->action_mroot;
-        $this->blockMroot = $responseObj->block_mroot;
-        $this->producer = $responseObj->producer;
         $this->scheduleVersion = $responseObj->schedule_version;
         $this->newProducers = $responseObj->new_producers;
+        // TODO: header_extensions
         $this->producerSignature = $responseObj->producer_signature;
+        // TODO: transactions block_extensions ref_block_prefix
+        $this->id = $responseObj->id;
+        $this->blockNum = $responseObj->block_num;
+    }
+
+    public function id(): string
+    {
+        return $this->id;
+    }
+
+    public function blockNum(): int
+    {
+        return $this->blockNum;
     }
 
     public function previous(): string
@@ -37,6 +54,11 @@ class Block
     public function timestamp(): \DateTime
     {
         return $this->timestamp;
+    }
+
+    public function confirmed(): int
+    {
+        return $this->confirmed;
     }
 
     public function transactionMroot(): string

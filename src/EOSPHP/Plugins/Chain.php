@@ -15,6 +15,15 @@ class Chain implements Plugin
         $this->client = $client;
     }
 
+    /* TODO:
+    3569548ms thread-1   http_plugin.cpp:325           add_handler          ] add api url: /v1/chain/get_currency_balance
+    3569548ms thread-1   http_plugin.cpp:325           add_handler          ] add api url: /v1/chain/get_currency_stats
+    3569548ms thread-1   http_plugin.cpp:325           add_handler          ] add api url: /v1/chain/get_producers
+    3569548ms thread-1   http_plugin.cpp:325           add_handler          ] add api url: /v1/chain/push_block
+    3569548ms thread-1   http_plugin.cpp:325           add_handler          ] add api url: /v1/chain/push_transaction
+    3569548ms thread-1   http_plugin.cpp:325           add_handler          ] add api url: /v1/chain/push_transactions
+    */
+
     public function getInfo()
     {
         return new Info($this->client->get('chain/get_info')->getBody());
