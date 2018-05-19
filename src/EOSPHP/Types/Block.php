@@ -16,6 +16,10 @@ class Block
     private $producerSignature;
     private $id;
     private $blockNum;
+    private $headerExtensions;
+    private $transactions;
+    private $blockExtensions;
+    private $refBlockPrefix;
 
     public function __construct($response)
     {
@@ -29,9 +33,11 @@ class Block
         $this->actionMroot = $responseObj->action_mroot;
         $this->scheduleVersion = $responseObj->schedule_version;
         $this->newProducers = $responseObj->new_producers;
-        // TODO: header_extensions
+        $this->headerExtensions = $responseObj->header_extensions;
         $this->producerSignature = $responseObj->producer_signature;
-        // TODO: transactions block_extensions ref_block_prefix
+        $this->transactions = $responseObj->transactions;
+        $this->blockExtensions = $responseObj->block_extensions;
+        $this->refBlockPrefix = $responseObj->ref_block_prefix;
         $this->id = $responseObj->id;
         $this->blockNum = $responseObj->block_num;
     }
@@ -94,5 +100,25 @@ class Block
     public function producerSignature(): string
     {
         return $this->producerSignature;
+    }
+
+    public function headerExtensions(): array
+    {
+        return $this->headerExtensions;
+    }
+
+    public function transactions(): array
+    {
+        return $this->headerExtensions;
+    }
+
+    public function blockExtensions(): array
+    {
+        return $this->headerExtensions;
+    }
+
+    public function refBlockPrefix(): int
+    {
+        return $this->headerExtensions;
     }
 }

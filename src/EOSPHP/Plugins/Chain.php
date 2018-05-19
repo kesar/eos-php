@@ -15,15 +15,6 @@ class Chain implements Plugin
         $this->client = $client;
     }
 
-    /* TODO:
-    3569548ms thread-1   http_plugin.cpp:325           add_handler          ] add api url: /v1/chain/get_currency_balance
-    3569548ms thread-1   http_plugin.cpp:325           add_handler          ] add api url: /v1/chain/get_currency_stats
-    3569548ms thread-1   http_plugin.cpp:325           add_handler          ] add api url: /v1/chain/get_producers
-    3569548ms thread-1   http_plugin.cpp:325           add_handler          ] add api url: /v1/chain/push_block
-    3569548ms thread-1   http_plugin.cpp:325           add_handler          ] add api url: /v1/chain/push_transaction
-    3569548ms thread-1   http_plugin.cpp:325           add_handler          ] add api url: /v1/chain/push_transactions
-    */
-
     public function getInfo()
     {
         return new Info($this->client->get('chain/get_info')->getBody());
@@ -83,17 +74,46 @@ class Chain implements Plugin
         return json_decode($res->getBody());
     }
 
+    public function getProducers(int $lowerBound, int $limit, bool $json = true)
+    {
+        $body = '{"json":'.$json.', "lower_bound":"'.$lowerBound.'", "limit":'.$limit.'}';
+        $res = $this->client->post('chain/get_producers', ['body' => $body]);
+
+        return json_decode($res->getBody());
+    }
+
+    public function getCurrencyBalance(string $code, string $account, ?string $symbol)
+    {
+        $body = '{"code":"'.$code.'", "account":"'.$account.'", "symbol":"'.$symbol.'"}';
+        $res = $this->client->post('chain/get_currency_balance', ['body' => $body]);
+
+        return json_decode($res->getBody());
+    }
+
+    public function getCurrencyStats(string $code, string $symbol)
+    {
+        $body = '{"code":"'.$code.'", "symbol":"'.$symbol.'"}';
+        $res = $this->client->post('chain/get_currency_stats', ['body' => $body]);
+
+        return json_decode($res->getBody());
+    }
+
+    public function getRequiredKeys()
+    {
+        // TODO
+    }
+
+    public function pushBlock()
+    {
+        // TODO
+    }
+
     public function pushTransaction()
     {
         // TODO
     }
 
     public function pushTransactions()
-    {
-        // TODO
-    }
-
-    public function getRequiredKeys()
     {
         // TODO
     }

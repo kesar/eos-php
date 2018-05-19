@@ -13,5 +13,19 @@ class History implements Plugin
         $this->client = $client;
     }
 
-    // TODO:  /v1/history/get_actions  /v1/history/get_transaction
+    public function getActions(string $accountName, int $pos = 0, int $offset = 0)
+    {
+        $body = '{"account_name":"'.$accountName.'", "pos":'.$pos.', "offset": '.$offset.'}';
+        $res = $this->client->post('history/get_actions', ['body' => $body]);
+
+        return json_decode($res->getBody());
+    }
+
+    public function getTransaction(string $transactionId)
+    {
+        $body = '{"id":"'.$transactionId.'"}';
+        $res = $this->client->post('history/get_transaction', ['body' => $body]);
+
+        return json_decode($res->getBody());
+    }
 }

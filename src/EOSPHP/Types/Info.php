@@ -11,6 +11,10 @@ class Info
     private $headBlockId;
     private $headBlockTime;
     private $headBlockProducer;
+    private $virtualBlockCpuLimit;
+    private $virtualBlockNetLimit;
+    private $blockCpuLimit;
+    private $blockNetLimit;
 
     public function __construct($response)
     {
@@ -22,7 +26,10 @@ class Info
         $this->headBlockId = $responseObj->head_block_id;
         $this->headBlockTime = new \DateTime($responseObj->head_block_time);
         $this->headBlockProducer = $responseObj->head_block_producer;
-        // TODO: virtual_block_cpu_limit virtual_block_net_limit block_cpu_limit block_net_limit
+        $this->virtualBlockCpuLimit = $responseObj->virtual_block_cpu_limit;
+        $this->virtualBlockNetLimit = $responseObj->virtual_block_net_limit;
+        $this->blockCpuLimit = $responseObj->block_cpu_limit;
+        $this->blockNetLimit = $responseObj->block_net_limit;
     }
 
     public function serverVersion(): string
@@ -58,5 +65,25 @@ class Info
     public function headBlockProducer(): string
     {
         return $this->headBlockProducer;
+    }
+
+    public function virtualBlockCpuLimit(): int
+    {
+        return $this->virtualBlockCpuLimit;
+    }
+
+    public function virtualBlockNetLimit(): int
+    {
+        return $this->virtualBlockNetLimit;
+    }
+
+    public function blockCpuLimit(): int
+    {
+        return $this->blockCpuLimit;
+    }
+
+    public function blockNetLimit(): int
+    {
+        return $this->blockNetLimit;
     }
 }
