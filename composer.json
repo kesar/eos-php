@@ -1,9 +1,10 @@
 {
   "name": "kesar/eos-php",
   "description": "EOS client library in PHP",
+  "version": "1.0.0",
   "require": {
     "php": ">=7.1",
-    "guzzlehttp/guzzle": "6.3.0"
+    "guzzlehttp/guzzle": "^6.3.0"
   },
   "autoload": {
     "psr-4": {
