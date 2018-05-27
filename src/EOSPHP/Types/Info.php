@@ -15,6 +15,7 @@ class Info
     private $virtualBlockNetLimit;
     private $blockCpuLimit;
     private $blockNetLimit;
+    private $chainId;
 
     public function __construct($response)
     {
@@ -30,6 +31,12 @@ class Info
         $this->virtualBlockNetLimit = $responseObj->virtual_block_net_limit;
         $this->blockCpuLimit = $responseObj->block_cpu_limit;
         $this->blockNetLimit = $responseObj->block_net_limit;
+        $this->chainId = $responseObj->chain_id;
+    }
+
+    public function chainId(): string
+    {
+        return $this->chainId;
     }
 
     public function serverVersion(): string
