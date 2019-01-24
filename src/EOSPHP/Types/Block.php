@@ -109,7 +109,7 @@ class Block
 
     public function transactions(): array
     {
-        return $this->headerExtensions;
+        return $this->transactions;
     }
 
     public function blockExtensions(): array
