@@ -53,7 +53,7 @@ class Chain implements Plugin
         int $limit = 10
     ) {
         $body = '{"scope":"'.$scope.'", "code":"'.$code.'", "table":"'.$table.'", "json": '.$json.', "lower_bound":'.$lowerBound.', "upper_bound":'.$upperBound.', "limit":'.$limit.'}';
-        $res = $this->client->post('chain/get_code', ['body' => $body]);
+        $res = $this->client->post('chain/get_table_rows', ['body' => $body]);
 
         return json_decode($res->getBody());
     }
