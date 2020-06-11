@@ -2,7 +2,7 @@
 
 ### Install:
 ```bash
- composer require kesar/eos-php
+ composer require kesar/eos-php:dev-master
  ```
 
 ### Examples:
